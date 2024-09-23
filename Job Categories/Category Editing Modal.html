@@ -1,0 +1,24 @@
+<div id="edit-category-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Edit Category</h2>
+        <form action="/edit-category" method="POST">
+            <div class="dropdown">
+                <label for="edit-category-type">Category Type</label>
+                <select id="edit-category-type" name="edit-category-type" required>
+                    <option value="">Select category type</option>
+                    <option value="Department">Department</option>
+                    <option value="Location">Location</option>
+                    <option value="Employment Type">Employment Type</option>
+                </select>
+            </div>
+            <div class="textbox">
+                <label for="edit-category-name">Category Name</label>
+                <input type="text" id="edit-category-name" name="edit-category-name" placeholder="Enter the category name" required>
+            </div>
+            <div class="buttons">
+                <button type="submit" class="btn-save-changes">Save Changes</button>
+            </div>
+        </form>
+    </div>
+</div>

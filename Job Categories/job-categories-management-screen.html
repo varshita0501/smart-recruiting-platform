@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Categories Management | Smart Recruiting Platform</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="job-categories-box">
+            <h2>Manage Job Categories</h2>
+            
+            <!-- Add/Edit Category Form -->
+            <form id="category-form" action="/add-category" method="POST">
+                <input type="hidden" id="category-id" name="id"> <!-- Hidden input for ID during editing -->
+                
+                <div class="dropdown">
+                    <label for="category-type">Category Type</label>
+                    <select id="category-type" name="category-type" required>
+                        <option value="">Select category type</option>
+                        <option value="Department">Department</option>
+                        <option value="Location">Location</option>
+                        <option value="Employment Type">Employment Type</option>
+                    </select>
+                </div>
+                
+                <div class="textbox">
+                    <label for="category-name">Category Name</label>
+                    <input type="text" id="category-name" name="category-name" placeholder="Enter the category name" required>
+                </div>
+                
+                <div class="buttons">
+                    <button type="submit" class="btn-add-category">Add Category</button>
+                    <button type="button" id="cancel-edit" class="btn-cancel hidden">Cancel</button> <!-- Cancel button for edit mode -->
+                </div>
+            </form>
+
+            <h3>Categories List</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category Type</th>
+                        <th>Category Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Categories will be dynamically inserted here via fetch -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.getElementById('category-form');
+            const categoryIdField = document.getElementById('category-id');
+            const cancelEditButton = document.getElementById('cancel-edit');
+            const addCategoryButton = document.querySelector('.btn-add-category');
+        
+            // Function to fetch and display categories
+            function loadCategories() {
+                fetch("/categories")
+                    .then(response => response.json())
+                    .then(data => {
+                        const tableBody = document.querySelector("tbody");
+                        tableBody.innerHTML = ""; // Clear current rows
+                        data.forEach(category => {
+                            const row = document.createElement("tr");
+                            row.innerHTML = `
+                                <td>${category.category_type}</td>
+                                <td>${category.category_name}</td>
+                                <td>
+                                    <button class="btn-edit" data-id="${category.id}" data-type="${category.category_type}" data-name="${category.category_name}">Edit</button>
+                                    <button class="btn-delete" data-id="${category.id}">Delete</button>
+                                </td>
+                            `;
+                            tableBody.appendChild(row);
+                        });
+        
+                        // Edit button functionality
+                        document.querySelectorAll('.btn-edit').forEach(button => {
+                            button.addEventListener('click', function () {
+                                const id = this.getAttribute('data-id');
+                                const type = this.getAttribute('data-type');
+                                const name = this.getAttribute('data-name');
+        
+                                categoryIdField.value = id;
+                                document.getElementById('category-type').value = type;
+                                document.getElementById('category-name').value = name;
+        
+                                addCategoryButton.textContent = 'Update Category';
+                                cancelEditButton.classList.remove('hidden');
+                            });
+                        });
+        
+                        // Delete button functionality
+                        document.querySelectorAll('.btn-delete').forEach(button => {
+                            button.addEventListener('click', function () {
+                                const id = this.getAttribute('data-id');
+                                fetch('/delete-category', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify({ id })
+                                }).then(() => {
+                                    loadCategories(); // Refresh the category list
+                                }).catch(err => console.error(err));
+                            });
+                        });
+                    });
+            }
+        
+            loadCategories(); // Load categories on page load
+        
+            // Form submit handler for add/update
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+        
+                const formData = {
+                    'category-type': document.getElementById('category-type').value,
+                    'category-name': document.getElementById('category-name').value,
+                };
+        
+                const formAction = categoryIdField.value ? '/edit-category' : '/add-category';
+                fetch(formAction, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                }).then(response => {
+                    if (response.ok) {
+                        if (!categoryIdField.value) {
+                            return response.json().then(newCategory => {
+                                loadCategories(); // Refresh categories after adding
+                            });
+                        } else {
+                            loadCategories(); // Refresh categories after editing
+                        }
+                        form.reset(); // Reset form fields
+                        categoryIdField.value = ''; // Clear hidden ID field
+                        addCategoryButton.textContent = 'Add Category'; // Reset button text
+                        cancelEditButton.classList.add('hidden'); // Hide cancel button
+                    }
+                }).catch(err => console.error(err));
+            });
+        
+            // Cancel edit mode
+            cancelEditButton.addEventListener('click', function () {
+                categoryIdField.value = ''; // Clear hidden ID field
+                form.reset(); // Reset form fields
+                addCategoryButton.textContent = 'Add Category'; // Reset button text
+                cancelEditButton.classList.add('hidden'); // Hide cancel button
+            });
+        });
+        </script>
+        
+</body>
+</html>

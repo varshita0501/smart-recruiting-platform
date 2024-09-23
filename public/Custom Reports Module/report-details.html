@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Details</title>
+    <link rel="stylesheet" href="report-details.css">
+</head>
+<body>
+    <header>
+        <h1>Report Details</h1>
+    </header>
+    
+    <section id="report-details">
+        <h2>Report Information</h2>
+        <p><strong>Report Name:</strong> Example Report</p>
+        <p><strong>Date Created:</strong> 2024-09-01</p>
+        <p><strong>Created By:</strong> Admin</p>
+
+        <h2>Report Data</h2>
+        <table id="report-data">
+            <thead>
+                <tr>
+                    <!-- Columns should be dynamically loaded based on report fields -->
+                    <th>Applicant Name</th>
+                    <th>Date Applied</th>
+                    <th>Status</th>
+                    <th>Source</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Example rows, these would be dynamically generated -->
+                <tr>
+                    <td>John Doe</td>
+                    <td>2024-08-15</td>
+                    <td>In Progress</td>
+                    <td>Job Board</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button id="edit-report">Edit Report</button>
+        <button id="delete-report">Delete Report</button>
+        <button id="export-report">Export Report</button>
+    </section>
+
+    <script src="report-details.js"></script>
+</body>
+</html>

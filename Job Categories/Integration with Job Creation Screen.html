@@ -1,0 +1,48 @@
+<div class="dropdown">
+    <label for="department">Department</label>
+    <select id="department" name="department" required>
+        <option value="">Select a department</option>
+    </select>
+</div>
+<div class="dropdown">
+    <label for="job-location">Job Location</label>
+    <select id="job-location" name="job-location" required>
+        <option value="">Select a job location</option>
+    </select>
+</div>
+<div class="dropdown">
+    <label for="employment-type">Employment Type</label>
+    <select id="employment-type" name="employment-type" required>
+        <option value="">Select employment type</option>
+        <option value="Full-time">Full-time</option>
+        <option value="Part-time">Part-time</option>
+        <option value="Contract">Contract</option>
+        <option value="Internship">Internship</option>
+    </select>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        fetch('/job-categories')
+            .then(response => response.json())
+            .then(categories => {
+                // Populate Department dropdown
+                const departmentSelect = document.getElementById('department');
+                categories.Department.forEach(dep => {
+                    const option = document.createElement('option');
+                    option.value = dep;
+                    option.textContent = dep;
+                    departmentSelect.appendChild(option);
+                });
+
+                // Populate Job Location dropdown
+                const locationSelect = document.getElementById('job-location');
+                categories.Location.forEach(loc => {
+                    const option = document.createElement('option');
+                    option.value = loc;
+                    option.textContent = loc;
+                    locationSelect.appendChild(option);
+                });
+            });
+    });
+</script>

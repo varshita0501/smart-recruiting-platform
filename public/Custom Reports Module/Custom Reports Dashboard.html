@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Reports Dashboard</title>
+    <link rel="stylesheet" href="Custom Reports Dashboard.css">
+</head>
+<body>
+    <header>
+        <h1>Custom Reports</h1>
+        <button id="create-new-report">Create New Report</button>
+    </header>
+    
+    <section id="saved-reports">
+        <h2>Saved Reports</h2>
+        <table id="reports-table">
+            <thead>
+                <tr>
+                    <th>Report Name</th>
+                    <th>Date Created</th>
+                    <th>Created By</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Example rows, these would be dynamically generated -->
+                <tr>
+                    <td>Applicant Report</td>
+                    <td>2024-09-01</td>
+                    <td>Admin</td>
+                    <td>
+                        <button class="view-report">View</button>
+                        <button class="edit-report">Edit</button>
+                        <button class="delete-report">Delete</button>
+                        <button class="export-report">Export</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

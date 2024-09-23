@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Report</title>
+    <link rel="stylesheet" href="create-report.css">
+</head>
+<body>
+    <header>
+        <h1>Create Report</h1>
+    </header>
+    
+    <section id="create-report">
+        <h2>Report Information</h2>
+        <form id="create-report-form">
+            <label for="report-name">Report Name</label>
+            <input type="text" id="report-name" placeholder="Enter report name" required>
+
+            <h3>Filters</h3>
+            <label for="date-range">Date Range</label>
+            <input type="text" id="date-range" placeholder="Select date range" required>
+
+            <label for="status">Application Status</label>
+            <select id="status">
+                <option value="">Select status</option>
+                <option value="new">New</option>
+                <option value="in-progress">In Progress</option>
+                <option value="hired">Hired</option>
+                <option value="rejected">Rejected</option>
+            </select>
+
+            <label for="position">Position</label>
+            <select id="position">
+                <option value="">Select position</option>
+                <!-- Options should be dynamically loaded -->
+            </select>
+
+            <label for="source">Source</label>
+            <select id="source">
+                <option value="">Select source</option>
+                <!-- Options should be dynamically loaded -->
+            </select>
+
+            <h3>Fields to Include</h3>
+            <div id="fields-to-include">
+                <!-- Checkboxes for fields should be dynamically loaded -->
+            </div>
+
+            <button type="submit">Generate Report</button>
+        </form>
+    </section>
+
+    <script src="create-report.js"></script>
+</body>
+</html>

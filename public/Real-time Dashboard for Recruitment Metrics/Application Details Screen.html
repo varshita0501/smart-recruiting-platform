@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Details | Smart Recruiting Platform</title>
+    <link rel="stylesheet" href="..\styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="application-details-box">
+            <h2>Application Details</h2>
+            <div class="applicant-info">
+                <h3>Applicant Information</h3>
+                <p><strong>Name:</strong> John Doe</p>
+                <p><strong>Email:</strong> john.doe@example.com</p>
+                <p><strong>Phone:</strong> +123456789</p>
+                <p><strong>Resume:</strong> <a href="#">Download</a></p>
+            </div>
+            <div class="job-info">
+                <h3>Job Information</h3>
+                <p><strong>Job Title:</strong> Software Engineer</p>
+                <p><strong>Department:</strong> Engineering</p>
+                <p><strong>Location:</strong> New York, NY</p>
+            </div>
+            <div class="application-status">
+                <h3>Application Status</h3>
+                <p><strong>Current Status:</strong> In Review</p>
+                <label for="change-status">Change Status</label>
+                <select id="change-status" name="change-status">
+                    <option value="Applied">Applied</option>
+                    <option value="In Review">In Review</option>
+                    <option value="Interview">Interview</option>
+                    <option value="Offered">Offered</option>
+                    <option value="Rejected">Rejected</option>
+                </select>
+                <button class="btn-save-status">Save Status</button>
+            </div>
+            <div class="notes-section">
+                <h3>Notes</h3>
+                <textarea id="notes" name="notes" placeholder="Add notes about the application"></textarea>
+                <button class="btn-save-notes">Save Notes</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

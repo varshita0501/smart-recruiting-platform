@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Application Form | Smart Recruiting Platform</title>
+    <link rel="stylesheet" href="..\styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-creation-box">
+            <h2>Create Application Form</h2>
+            <form action="/save-form" method="POST">
+                <div class="textbox">
+                    <label for="form-name">Form Name</label>
+                    <input type="text" id="form-name" name="form-name" placeholder="Enter the form name" required>
+                </div>
+                <div class="dropdown">
+                    <label for="associated-job">Associated Job</label>
+                    <select id="associated-job" name="associated-job" required>
+                        <option value="">Select a job</option>
+                        <!-- Options populated from job postings -->
+                    </select>
+                </div>
+                <div class="form-fields-section">
+                    <h3>Form Fields</h3>
+                    <button type="button" class="btn-add-field">Add Field</button>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Field Name</th>
+                                <th>Field Type</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Fields added dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="buttons">
+                    <button type="submit" class="btn-save-form">Save Form</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

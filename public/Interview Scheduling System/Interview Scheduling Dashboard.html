@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Scheduling Dashboard | Smart Recruiting Platform</title>
+    <link rel="stylesheet" href="..\styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="dashboard-box">
+            <h2>Interview Scheduling Dashboard</h2>
+            <div class="summary-cards">
+                <div class="card">
+                    <h3>Upcoming Interviews</h3>
+                    <p>8</p>
+                </div>
+            </div>
+            <h3>Scheduled Interviews</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Applicant Name</th>
+                        <th>Job Title</th>
+                        <th>Interview Date</th>
+                        <th>Interview Time</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Jane Doe</td>
+                        <td>Product Manager</td>
+                        <td>2024-09-05</td>
+                        <td>10:00 AM</td>
+                        <td>Scheduled</td>
+                        <td>
+                            <button class="btn-view">View</button>
+                            <button class="btn-reschedule">Reschedule</button>
+                            <button class="btn-cancel">Cancel</button>
+                        </td>
+                    </tr>
+                    <!-- Additional scheduled interviews can be listed here -->
+                </tbody>
+            </table>
+            <div class="buttons">
+                <button class="btn-schedule-new">Schedule New Interview</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

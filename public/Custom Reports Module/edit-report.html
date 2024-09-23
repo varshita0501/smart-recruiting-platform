@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Report</title>
+    <link rel="stylesheet" href="edit-report.css">
+</head>
+<body>
+    <header>
+        <h1>Edit Report</h1>
+    </header>
+    
+    <section id="edit-report">
+        <h2>Report Information</h2>
+        <form id="edit-report-form">
+            <!-- Form fields pre-filled with existing data -->
+            <label for="report-name">Report Name</label>
+            <input type="text" id="report-name" value="Existing Report Name" required>
+
+            <h3>Filters</h3>
+            <label for="date-range">Date Range</label>
+            <input type="text" id="date-range" value="2024-08-01 to 2024-08-31" required>
+
+            <label for="status">Application Status</label>
+            <select id="status">
+                <option value="">Select status</option>
+                <option value="new" selected>New</option>
+                <option value="in-progress">In Progress</option>
+                <option value="hired">Hired</option>
+                <option value="rejected">Rejected</option>
+            </select>
+
+            <label for="position">Position</label>
+            <select id="position">
+                <option value="">Select position</option>
+                <!-- Options should be dynamically loaded -->
+            </select>
+
+            <label for="source">Source</label>
+            <select id="source">
+                <option value="">Select source</option>
+                <!-- Options should be dynamically loaded -->
+            </select>
+
+            <h3>Fields to Include</h3>
+            <div id="fields-to-include">
+                <!-- Checkboxes for fields should be pre-checked based on existing report -->
+            </div>
+
+            <button type="submit">Save Changes</button>
+        </form>
+    </section>
+
+    <script src="edit-report.js"></script>
+</body>
+</html>

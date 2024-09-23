@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Interview | Smart Recruiting Platform</title>
+    <link rel="stylesheet" href="..\styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="schedule-interview-box">
+            <h2>Schedule Interview</h2>
+            <form>
+                <div class="form-group">
+                    <label for="applicant-name">Applicant Name</label>
+                    <select id="applicant-name" name="applicant-name" required>
+                        <option value="">Select applicant</option>
+                        <!-- Options populated from applicant names -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="job-title">Job Title</label>
+                    <select id="job-title" name="job-title" required>
+                        <option value="">Select job title</option>
+                        <!-- Options populated from job titles -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="interview-date">Interview Date</label>
+                    <input type="date" id="interview-date" name="interview-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="interview-time">Interview Time</label>
+                    <input type="time" id="interview-time" name="interview-time" required>
+                </div>
+                <div class="form-group">
+                    <label for="interviewers">Interviewers</label>
+                    <select id="interviewers" name="interviewers" multiple required>
+                        <!-- Options populated from interviewers list -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="interview-mode">Interview Mode</label>
+                    <select id="interview-mode" name="interview-mode" required>
+                        <option value="">Select interview mode</option>
+                        <option value="In-Person">In-Person</option>
+                        <option value="Video Call">Video Call</option>
+                        <option value="Phone Call">Phone Call</option>
+                        <option value="Teams Call">Teams Call</option>
+                    </select>
+                </div>
+                <div class="form-group" id="location-group" style="display: none;">
+                    <label for="interview-location">Interview Location</label>
+                    <input type="text" id="interview-location" name="interview-location" placeholder="Enter interview location">
+                </div>
+                <div class="buttons">
+                    <button type="submit" class="btn-schedule">Schedule Interview</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        document.getElementById('interview-mode').addEventListener('change', function() {
+            const locationGroup = document.getElementById('location-group');
+            if (this.value === 'In-Person') {
+                locationGroup.style.display = 'block';
+            } else {
+                locationGroup.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

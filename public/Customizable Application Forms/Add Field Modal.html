@@ -1,0 +1,30 @@
+<div id="add-field-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Add Field</h2>
+        <form action="#" method="POST">
+            <div class="textbox">
+                <label for="field-name">Field Name</label>
+                <input type="text" id="field-name" name="field-name" placeholder="Enter the field name" required>
+            </div>
+            <div class="dropdown">
+                <label for="field-type">Field Type</label>
+                <select id="field-type" name="field-type" required>
+                    <option value="">Select field type</option>
+                    <option value="Textbox">Textbox</option>
+                    <option value="Dropdown">Dropdown</option>
+                    <option value="Checkbox">Checkbox</option>
+                    <option value="Radio Button">Radio Button</option>
+                    <option value="Date Picker">Date Picker</option>
+                </select>
+            </div>
+            <div class="textbox" id="field-options-container" style="display: none;">
+                <label for="field-options">Field Options</label>
+                <input type="text" id="field-options" name="field-options" placeholder="Enter options separated by commas">
+            </div>
+            <div class="buttons">
+                <button type="submit" class="btn-add-field">Add Field</button>
+            </div>
+        </form>
+    </div>
+</div>

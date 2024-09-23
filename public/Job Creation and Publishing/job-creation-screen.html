@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Creation | Smart Recruiting Platform</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="job-creation-box">
+            <h2>Create a Job Posting</h2>
+            
+            <form id="jobForm" action="/api/save-job" method="POST">
+                <div class="textbox">
+                    <label for="job-title">Job Title</label>
+                    <input type="text" id="job-title" name="jobTitle" placeholder="Enter the job title" required>
+                </div>
+                <div class="textarea">
+                    <label for="job-description">Job Description</label>
+                    <textarea id="job-description" name="jobDescription" placeholder="Enter the job description" required minlength="50"></textarea>
+                </div>
+
+                <div class="dropdown">
+                    <label for="department">Department</label>
+                    <select id="department" name="department" required>
+                        <option value="">Select a department</option>
+                    </select>
+                </div>
+
+                <div class="dropdown">
+                    <label for="job-location">Job Location</label>
+                    <select id="job-location" name="jobLocation" required>
+                        <option value="">Select a job location</option>
+                    </select>
+                </div>
+
+                <div class="dropdown">
+                    <label for="employment-type">Employment Type</label>
+                    <select id="employment-type" name="employmentType" required>
+                        <option value="">Select employment type</option>
+                        <option value="Full-time">Full-time</option>
+                        <option value="Part-time">Part-time</option>
+                        <option value="Contract">Contract</option>
+                        <option value="Internship">Internship</option>
+                    </select>
+                </div>
+
+                <div class="salary-range">
+                    <label for="salary-range">Salary Range</label>
+                    <input type="number" id="salary-min" name="salaryMin" placeholder="Min" required> -
+                    <input type="number" id="salary-max" name="salaryMax" placeholder="Max" required>
+                </div>
+
+                <div class="textbox">
+                    <label for="application-deadline">Application Deadline</label>
+                    <input type="date" id="application-deadline" name="applicationDeadline" required>
+                </div>
+
+                <div class="textarea">
+                    <label for="required-qualifications">Required Qualifications</label>
+                    <textarea id="required-qualifications" name="requiredQualifications" placeholder="Enter the required qualifications" required></textarea>
+                </div>
+
+                <div class="textarea">
+                    <label for="preferred-qualifications">Preferred Qualifications</label>
+                    <textarea id="preferred-qualifications" name="preferredQualifications" placeholder="Enter the preferred qualifications"></textarea>
+                </div>
+
+                <div class="textarea">
+                    <label for="responsibilities">Responsibilities</label>
+                    <textarea id="responsibilities" name="responsibilities" placeholder="Enter the job responsibilities" required></textarea>
+                </div>
+
+                <div class="buttons">
+                    <button type="button" class="btn-draft" onclick="saveAsDraft()">Save as Draft</button>
+                    <button type="button" class="btn-publish" onclick="publishJob()">Publish</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('/job-categories')
+                .then(response => response.json())
+                .then(categories => {
+                    // Populate Department dropdown
+                    const departmentSelect = document.getElementById('department');
+                    categories.Department.forEach(dep => {
+                        const option = document.createElement('option');
+                        option.value = dep;
+                        option.textContent = dep;
+                        departmentSelect.appendChild(option);
+                    });
+
+                    // Populate Job Location dropdown
+                    const locationSelect = document.getElementById('job-location');
+                    categories.Location.forEach(loc => {
+                        const option = document.createElement('option');
+                        option.value = loc;
+                        option.textContent = loc;
+                        locationSelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error fetching job categories:', error));
+        });
+
+        async function publishJob() {
+            const formData = new FormData(document.getElementById('jobForm'));
+            formData.append('status', 'Published'); // Set the status to Published
+
+            await fetch('/api/save-job', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message); // Show success message
+                window.location.href = '/Job Creation and Publishing/published-jobs-screen.html'; // Redirect to published jobs
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to publish job.');
+            });
+        }
+
+        async function saveAsDraft() {
+            const formData = new FormData(document.getElementById('jobForm'));
+            formData.append('status', 'Draft');
+
+            await fetch('/api/save-job', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message); // Show success message
+                window.location.href = '/Job Creation and Publishing/job-drafts-screen.html';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to save job.');
+            });
+        }
+
+        window.onload = async () => {
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('id');
+            if (id) {
+                const response = await fetch(`/api/get-job/${id}`);
+                const job = await response.json();
+
+                // Populate the form fields with job data
+                document.getElementById('job-title').value = job.title;
+                document.getElementById('job-description').value = job.description;
+                document.getElementById('department').value = job.department;
+                document.getElementById('job-location').value = job.location;
+                document.getElementById('employment-type').value = job.employment_type;
+                document.getElementById('salary-min').value = job.salary_min;
+                document.getElementById('salary-max').value = job.salary_max;
+                document.getElementById('application-deadline').value = job.application_deadline;
+                document.getElementById('required-qualifications').value = job.required_qualifications;
+                document.getElementById('preferred-qualifications').value = job.preferred_qualifications;
+                document.getElementById('responsibilities').value = job.responsibilities;
+
+                // Change form action to update job
+                document.getElementById('jobForm').onsubmit = async (e) => {
+                    e.preventDefault(); // Prevent default form submission
+                    await fetch(`/api/edit-job/${id}`, {
+                        method: 'PUT',
+                        body: new URLSearchParams(new FormData(document.getElementById('jobForm')))
+                    });
+                    alert('Job updated successfully!');
+                    window.location.href = '/Job Creation and Publishing/published-jobs-screen.html';
+                };
+            }
+        };
+    </script>
+</body>
+</html>

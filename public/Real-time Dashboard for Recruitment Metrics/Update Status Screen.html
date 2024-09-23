@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Status | Smart Recruiting Platform</title>
+    <link rel="stylesheet" href="..\styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="update-status">
+            <h2>Update Status</h2>
+            <p><strong>Current Status:</strong> In Progress</p>
+            <form>
+                <div class="form-group">
+                    <label for="new-status">New Status</label>
+                    <select id="new-status" required>
+                        <option value="">Select new status</option>
+                        <option value="New">New</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Hired">Hired</option>
+                        <option value="Rejected">Rejected</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="notes">Notes</label>
+                    <textarea id="notes" placeholder="Enter any notes"></textarea>
+                </div>
+                <button type="submit" class="btn-save-status">Save Status</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

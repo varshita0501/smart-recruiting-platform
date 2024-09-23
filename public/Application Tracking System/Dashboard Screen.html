@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Smart Recruiting Platform</title>
+    <link rel="stylesheet" href="..\styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="dashboard-box">
+            <h2>Dashboard</h2>
+            <div class="summary-cards">
+                <div class="card">
+                    <h3>Job Openings</h3>
+                    <p>15</p>
+                </div>
+                <div class="card">
+                    <h3>Applications</h3>
+                    <p>125</p>
+                </div>
+            </div>
+            <h3>Recent Applications</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Applicant Name</th>
+                        <th>Job Title</th>
+                        <th>Status</th>
+                        <th>Date Applied</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>John Doe</td>
+                        <td>Software Engineer</td>
+                        <td>In Review</td>
+                        <td>2024-09-01</td>
+                        <td>
+                            <button class="btn-view">View</button>
+                            <button class="btn-next-stage">Move to Next Stage</button>
+                            <button class="btn-reject">Reject</button>
+                        </td>
+                    </tr>
+                    <!-- Additional recent applications can be listed here -->
+                </tbody>
+            </table>
+            <div class="buttons">
+                <button class="btn-view-all">View All Applications</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
