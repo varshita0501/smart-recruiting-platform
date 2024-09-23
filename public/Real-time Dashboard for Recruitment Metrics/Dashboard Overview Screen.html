@@ -3,83 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recruitment Dashboard | Smart Recruiting Platform</title>
-    <link rel="stylesheet" href="..\styles.css">
+    <title>Full Screen Iframe</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* Prevent scrolling */
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: 0; /* Remove the border */
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Recruitment Dashboard</h1>
-            <div class="date-range-picker">
-                <label for="date-range">Date Range:</label>
-                <input type="text" id="date-range" placeholder="Select date range">
-                <button id="refresh-button">Refresh</button>
-            </div>
-        </header>
-
-        <section class="key-metrics">
-            <div class="metric-box">
-                <h3>Total Applications</h3>
-                <p>120</p>
-            </div>
-            <div class="metric-box">
-                <h3>Applications in Progress</h3>
-                <p>45</p>
-            </div>
-            <div class="metric-box">
-                <h3>Hired Candidates</h3>
-                <p>25</p>
-            </div>
-            <div class="metric-box">
-                <h3>Rejected Candidates</h3>
-                <p>30</p>
-            </div>
-        </section>
-
-        <section class="charts">
-            <div class="chart-container">
-                <h3>Applications Over Time</h3>
-                <canvas id="applications-over-time-chart"></canvas>
-            </div>
-            <div class="chart-container">
-                <h3>Applications by Source</h3>
-                <canvas id="applications-by-source-chart"></canvas>
-            </div>
-            <div class="chart-container">
-                <h3>Applications by Status</h3>
-                <canvas id="applications-by-status-chart"></canvas>
-            </div>
-        </section>
-
-        <section class="detailed-metrics">
-            <h3>Detailed Metrics</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Applicant Name</th>
-                        <th>Position</th>
-                        <th>Source</th>
-                        <th>Date Applied</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Jane Doe</td>
-                        <td>Software Engineer</td>
-                        <td>Job Board</td>
-                        <td>2024-08-25</td>
-                        <td>In Progress</td>
-                        <td><button class="btn-view-details">View Details</button></td>
-                    </tr>
-                    <!-- More rows as needed -->
-                </tbody>
-            </table>
-        </section>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="dashboard.js"></script>
+    <iframe title="yazvi (1)[1]" src="https://app.powerbi.com/view?r=eyJrIjoiZWZiNzE3YmQtMWVhNy00YjhiLThmMWYtZWUwYzY1OTc4MjU0IiwidCI6IjVjMmI4YjIyLTllZDEtNGQ5Ny04YjIzLWM1MjgyYmE5YzVkMyJ9" allowfullscreen></iframe>
 </body>
 </html>
